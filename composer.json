@@ -1,17 +1,16 @@
 {
-    "name": "warrence/yii2-kartikgii",
+    "name": "andydodot/yii2-dodotgii",
     "description": "Gii Generator base on Kartik-V extension https://github.com/kartik-v",
     "authors": [
         {
 
-            "name": "Warrence",
-
-            "email": "warrence@gmail.com"
+            "name": "Andy Kurniawan",
+            "email": "dodot.kurniawan@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "warrence\\kartikgii\\": ""
+            "andydodot\\dodotgii\\": ""
         }
     },
     "require": {

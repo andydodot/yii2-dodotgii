@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace warrence\kartikgii\crud;
+namespace andydodot\dodotgii\crud;
 
 use Yii;
 use yii\db\ActiveRecord;
