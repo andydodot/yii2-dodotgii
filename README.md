@@ -1,4 +1,4 @@
-yii2-kartikgii
+yii2-dodotgii
 ==============
 
 Gii CRUD Generator base on kartik-v extension. Save repeatitive works on every new CRUD generated. Below are some of the features:
