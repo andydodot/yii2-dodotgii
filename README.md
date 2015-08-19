@@ -1,6 +1,91 @@
 yii2-dodotgii
 ==============
 
+Gii CRUD Generator with custom and fix issues for inlislite (Opensource Digital Library)
+Fix Issues :
+-I18N for placeholder in view _form.php and index.php button "Add" and "Reset List"
+-Title base on modul name without define variable on create.php & update.php
+-Edit link base on moduleId/ControllerID
+
+Custom :
+-Ignorance some timespan field for inlislite development like CreateBy,CreateDate,CreateTerminal,UpdateBy,UpdateDate,UpdateTerminal
+
+## Installation
+
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+
+Either run
+
+```
+$ php composer.phar require andydodot/yii2-dodotgii "dev-master"
+```
+
+or add
+
+```
+"andydodot/yii2-dodotgii": "dev-master"
+```
+
+to the ```require``` section of your `composer.json` file.
+
+## Usage
+
+```php
+//if your gii modules configuration looks like below:
+$config['modules']['gii'] = 'yii\gii\Module';
+
+//change it to
+$config['modules']['gii']['class'] = 'yii\gii\Module';
+```
+
+```php
+//Add this into backend/config/main-local.php
+$config['modules']['gii']['generators'] = [
+        'dodotgii-crud' => ['class' => 'andydodot\dodotgii\crud\Generator'],
+    ];
+```
+
+```php
+//Add 'gridview' into your 'modules' section in backend/config/main.php
+'modules' => [
+        'gridview' => [
+            'class' => 'kartik\grid\Module',
+        ],
+
+    ],
+```
+
+```php
+//add modules 'datecontrol' into your 'modules' section in common/config/main 
+'modules' => [
+        'datecontrol' =>  [
+            'class' => 'kartik\datecontrol\Module',
+
+            // format settings for displaying each date attribute
+            'displaySettings' => [
+                'date' => 'd-m-Y',
+                'time' => 'H:i:s A',
+                'datetime' => 'd-m-Y H:i:s A',
+            ],
+
+            // format settings for saving each date attribute
+            'saveSettings' => [
+                'date' => 'Y-m-d', 
+                'time' => 'H:i:s',
+                'datetime' => 'Y-m-d H:i:s',
+            ],
+
+
+
+            // automatically use kartik\widgets for each of the above formats
+            'autoWidget' => true,
+
+        ]
+    ],
+```
+
+Original README :
+
 Gii CRUD Generator base on kartik-v extension. Save repeatitive works on every new CRUD generated. Below are some of the features:
 
 - Data grid view are generated using kartik-v/yii2-grid, pjax are use for the grid
