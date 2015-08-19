@@ -2,13 +2,18 @@ yii2-dodotgii
 ==============
 
 Gii CRUD Generator with custom and fix issues for inlislite (Opensource Digital Library)
+
 Fix Issues :
--I18N for placeholder in view _form.php and index.php button "Add" and "Reset List"
--Title base on modul name without define variable on create.php & update.php
--Edit link base on moduleId/ControllerID
+
+- I18N for placeholder in view _form.php and index.php button "Add" and "Reset List"
+- Title base on modul name without define variable on create.php & update.php
+- Edit link base on moduleId/ControllerID
+
 
 Custom :
--Ignorance some timespan field for inlislite development like CreateBy,CreateDate,CreateTerminal,UpdateBy,UpdateDate,UpdateTerminal
+
+- Ignorance some timespan field for inlislite development like CreateBy,CreateDate,CreateTerminal,UpdateBy,UpdateDate,UpdateTerminal
+
 
 ## Installation
 
