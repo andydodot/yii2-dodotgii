@@ -42,7 +42,7 @@ class Generator extends \yii\gii\generators\crud\Generator
      */
     public function getName()
     {
-        return 'Kartik CRUD Generator';
+        return 'Dodot CRUD Generator';
     }
 
     /**
@@ -51,7 +51,7 @@ class Generator extends \yii\gii\generators\crud\Generator
     public function getDescription()
     {
         return 'This generator generates a controller and views that implement CRUD (Create, Read, Update, Delete)
-            operations for the specified data model.';
+            operations for the specified data model. With custom to inlislite & fix issues I18N';
     }
 
     /**
