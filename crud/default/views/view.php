@@ -51,41 +51,49 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
     foreach ($generator->getTableSchema()->columns as $column) {
 
         $format = $generator->generateColumnFormat($column);
+        if($column->name != 'ID' &&
+           $column->name != 'CreateBy' &&
+           $column->name != 'CreateDate' &&
+           $column->name != 'CreateTerminal' &&
+           $column->name != 'UpdateBy' &&
+           $column->name != 'UpdateDate' &&
+           $column->name != 'UpdateTerminal'
+           ){
+                if($column->type === 'date'){
+                    echo "            [
+                        'attribute'=>'$column->name',
+                        'format'=>['date',(isset(Yii::\$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::\$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],
+                        'type'=>DetailView::INPUT_WIDGET,
+                        'widgetOptions'=> [
+                            'class'=>DateControl::classname(),
+                            'type'=>DateControl::FORMAT_DATE
+                        ]
+                    ],\n";
 
-        if($column->type === 'date'){
-            echo "            [
-                'attribute'=>'$column->name',
-                'format'=>['date',(isset(Yii::\$app->modules['datecontrol']['displaySettings']['date'])) ? Yii::\$app->modules['datecontrol']['displaySettings']['date'] : 'd-m-Y'],
-                'type'=>DetailView::INPUT_WIDGET,
-                'widgetOptions'=> [
-                    'class'=>DateControl::classname(),
-                    'type'=>DateControl::FORMAT_DATE
-                ]
-            ],\n";
-
-        }elseif($column->type === 'time'){
-            echo "            [
-                'attribute'=>'$column->name',
-                'format'=>['time',(isset(Yii::\$app->modules['datecontrol']['displaySettings']['time'])) ? Yii::\$app->modules['datecontrol']['displaySettings']['time'] : 'H:i:s A'],
-                'type'=>DetailView::INPUT_WIDGET,
-                'widgetOptions'=> [
-                    'class'=>DateControl::classname(),
-                    'type'=>DateControl::FORMAT_TIME
-                ]
-            ],\n";
-        }elseif($column->type === 'datetime' || $column->type === 'timestamp'){
-            echo "            [
-                'attribute'=>'$column->name',
-                'format'=>['datetime',(isset(Yii::\$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::\$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-                'type'=>DetailView::INPUT_WIDGET,
-                'widgetOptions'=> [
-                    'class'=>DateControl::classname(),
-                    'type'=>DateControl::FORMAT_DATETIME
-                ]
-            ],\n";
-        }else{
-            echo "            '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
-        }
+                }elseif($column->type === 'time'){
+                    echo "            [
+                        'attribute'=>'$column->name',
+                        'format'=>['time',(isset(Yii::\$app->modules['datecontrol']['displaySettings']['time'])) ? Yii::\$app->modules['datecontrol']['displaySettings']['time'] : 'H:i:s A'],
+                        'type'=>DetailView::INPUT_WIDGET,
+                        'widgetOptions'=> [
+                            'class'=>DateControl::classname(),
+                            'type'=>DateControl::FORMAT_TIME
+                        ]
+                    ],\n";
+                }elseif($column->type === 'datetime' || $column->type === 'timestamp'){
+                    echo "            [
+                        'attribute'=>'$column->name',
+                        'format'=>['datetime',(isset(Yii::\$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::\$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
+                        'type'=>DetailView::INPUT_WIDGET,
+                        'widgetOptions'=> [
+                            'class'=>DateControl::classname(),
+                            'type'=>DateControl::FORMAT_DATETIME
+                        ]
+                    ],\n";
+                }else{
+                    echo "            '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+                }
+           }
     }
 }
 ?>
