@@ -159,7 +159,7 @@ if(!empty($enum)){
 <?php else :?>
                 'updatedTerminalAttribute' => false,
 <?php endif;?>
-<?php if(!empty($generator->terminalValue) && $generator->terminalValue != '\\Yii::$app->request->userIP'):?>
+<?php if(!empty($generator->terminalValue)):?>
                 'value' => <?= $generator->terminalValue?>,
 <?php endif;?>
             ],
