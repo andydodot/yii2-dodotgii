@@ -25,6 +25,10 @@ use yii\behaviors\TimestampBehavior;
 <?php if($generator->createdBy || $generator->updatedBy): ?>
 use yii\behaviors\BlameableBehavior;
 <?php endif; ?>
+<?php if($generator->createdTerminal || $generator->updatedTerminal): ?>
+use andydodot\dodotgii\behaviors\TerminalBehavior;
+<?php endif; ?>
+
 /**
  * This is the base-model class for table "<?= $tableName ?>".
  *
@@ -97,7 +101,7 @@ if(!empty($enum)){
 <?php endforeach; ?>
 
 <?php if ($generator->createdAt || $generator->updatedAt
-        || $generator->createdBy || $generator->updatedBy : 
+        || $generator->createdBy || $generator->updatedBy) : 
 		
     echo "\n";?>/**
      * @inheritdoc
@@ -139,6 +143,24 @@ if(!empty($enum)){
 <?php endif;?>
 <?php if(!empty($generator->blameableValue) && $generator->blameableValue != '\\Yii::$app->user->id'):?>
                 'value' => <?= $generator->blameableValue?>,
+<?php endif;?>
+            ],
+<?php endif;?>
+<?php if($generator->createdTerminal || $generator->updatedTerminal):?>
+            [
+                'class' => TerminalBehavior::className(),
+<?php if(!empty($generator->createdTerminal)):?>
+                'createdTerminalAttribute' => '<?= $generator->createdTerminal?>',
+<?php else :?>
+                'createdTerminalAttribute' => false,
+<?php endif;?>
+<?php if(!empty($generator->updatedTerminal)):?>
+                'updatedTerminalAttribute' => '<?= $generator->updatedTerminal?>',
+<?php else :?>
+                'updatedTerminalAttribute' => false,
+<?php endif;?>
+<?php if(!empty($generator->terminalValue) && $generator->terminalValue != '\\Yii::$app->request->userIP'):?>
+                'value' => <?= $generator->terminalValue?>,
 <?php endif;?>
             ],
 <?php endif;?>

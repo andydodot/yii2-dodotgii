@@ -14,6 +14,7 @@ echo $form->field($generator, 'db');
 echo $form->field($generator, 'generateRelations')->checkbox();
 echo $form->field($generator, 'generateLabelsFromComments')->checkbox();
 echo $form->field($generator, 'generateModelClass')->checkbox();
+?>
 <?= "<h4>Timestamp Behaviors</h4>";?>
 <div class="row">
     <div class="col-md-3">
@@ -41,5 +42,22 @@ echo "<h4>Blameable Behaviors</h4>";
     </div>
 </div>  
 
+<?php
+echo "<h4>Terminal Behaviors</h4>";
+?>
+<div class="row">
+    <div class="col-md-3">
+<?= $form->field($generator, 'createdTerminal'); ?>
+    </div>
+    <div class="col-md-3">
+<?= $form->field($generator, 'updatedTerminal'); ?>
+    </div>
+    <div class="col-md-6">
+<?= $form->field($generator, 'terminalValue'); ?>
+    </div>
+</div>  
+
+<?php
 echo $form->field($generator, 'enableI18N')->checkbox();
 echo $form->field($generator, 'messageCategory');
+?>

@@ -19,6 +19,18 @@ use yii\helpers\Inflector;
  */
 class Generator extends \yii\gii\generators\model\Generator
 {
+	
+	public $createdAt = 'created_at';
+    public $updatedAt = 'updated_at';
+    public $timestampValue = "new \yii\db\Expression('NOW()')";
+    public $createdBy = 'created_by';
+    public $updatedBy = 'updated_by';
+    public $blameableValue = '\Yii::$app->user->id';
+	public $createdTerminal = 'created_terminal';
+    public $updatedTerminal = 'updated_terminal';
+    public $terminalValue = '\Yii::$app->request->userIP';
+	
+	
     /**
      * @var bool whether to overwrite (extended) model classes, will be always created, if file does not exist
      */
@@ -60,6 +72,10 @@ class Generator extends \yii\gii\generators\model\Generator
             parent::rules(),
             [
                 [['generateModelClass'], 'boolean'],
+				[[
+                'blameableValue', 'timestampValue',
+                'createdAt', 'updatedAt', 'createdBy', 'updatedBy', 'createdTerminal', 'updatedTerminal',
+                'blameableValue',], 'safe'],
                 [['tablePrefix'], 'safe'],
             ]
         );
@@ -88,7 +104,20 @@ class Generator extends \yii\gii\generators\model\Generator
             [
                 'generateModelClass' => 'This indicates whether the generator should generate the model class, this should usually be done only once. The model-base class is always generated.',
                 'tablePrefix'        => 'Custom table prefix, eg <code>app_</code>.<br/><b>Note!</b> overrides <code>yii\db\Connection</code> prefix!',
-
+			'createdAt' => 'This indicates whether the generator should generate Timestamp Behaviors feature for Model. '
+            . 'Enter this field with Created At column name. '
+            . 'Empty "Created At" & "Updated At" field if you want to disable this feature.',
+            'updatedAt' => 'This indicates whether the generator should generate Timestamp Behaviors feature for Model. '
+            . 'Enter this field with Updated At column name. '
+            . 'Empty "Created At" & "Updated At" field if you want to disable this feature.',
+            'timestampValue' => 'This will generate the </code>value</code> configuration entry for Timestamp Behaviors.  e.g., <code>new Expression(\'NOW()\')</code>',
+            'createdBy' => 'This indicates whether the generator should generate Blameable Behaviors feature for Model. '
+            . 'Enter this field with Created By column name. '
+            . 'Empty "Created By" & "Updated By" field if you want to disable this feature.',
+            'updatedBy' => 'This indicates whether the generator should generate Blameable Behaviors feature for Model. '
+            . 'Enter this field with Updated By column name. '
+            . 'Empty "Created By" & "Updated By" field if you want to disable this feature.',
+            'blameableValue' => 'This will generate the </code>value</code> configuration entry for Blameable Behaviors.  e.g., <code>new Expression(\'NOW()\')</code>',
             ]
         );
     }
